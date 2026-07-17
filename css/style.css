@@ -1,0 +1,136 @@
+:root {
+  --bg: #0f1419;
+  --panel: #171f29;
+  --panel-soft: #1d2833;
+  --border: #2b3a46;
+  --text: #edf5f2;
+  --muted: #9fb0bb;
+  --accent: #21c7a8;
+  --accent-strong: #2fe0be;
+  --warn: #f0b15f;
+}
+
+.block-container {
+  padding-top: 1.5rem;
+  max-width: 1280px;
+}
+
+.topbar {
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+}
+
+.topbar h1 {
+  color: var(--text);
+  font-size: 2rem;
+  letter-spacing: 0;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.35rem;
+  text-transform: uppercase;
+}
+
+.status-pill {
+  background: linear-gradient(135deg, rgba(33, 199, 168, 0.2), rgba(98, 167, 255, 0.16));
+  border: 1px solid rgba(33, 199, 168, 0.35);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 0.9rem;
+  padding: 0.65rem 0.8rem;
+  white-space: nowrap;
+}
+
+.metric-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  min-height: 92px;
+  padding: 0.9rem;
+}
+
+.metric-card span {
+  color: var(--muted);
+  display: block;
+  font-size: 0.78rem;
+  margin-bottom: 0.55rem;
+}
+
+.metric-card strong {
+  color: var(--text);
+  display: block;
+  font-size: 1.05rem;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.upload-card {
+  background: var(--panel-soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin: 0.45rem 0;
+  padding: 0.75rem;
+}
+
+.upload-card strong,
+.upload-card span {
+  display: block;
+}
+
+.upload-card span {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.chat-shell {
+  display: block;
+  margin-top: 1.25rem;
+}
+
+section[data-testid="stSidebar"] {
+  border-right: 1px solid var(--border);
+}
+
+.stButton > button,
+.stDownloadButton > button {
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.stButton > button[kind="primary"] {
+  background: linear-gradient(135deg, var(--accent), #62a7ff);
+  border: 0;
+  color: #07110f;
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin-top: 2rem;
+  padding: 1rem 0 0.5rem;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .status-pill {
+    white-space: normal;
+  }
+}
