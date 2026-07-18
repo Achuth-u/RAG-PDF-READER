@@ -179,8 +179,8 @@ Run Streamlit as the web process and configure an Ollama service separately. Add
 
 Vercel serverless functions are not a good fit for the full Streamlit app because
 Streamlit expects a long-running process and WebSocket support. This repo includes
-`api/index.py` and `vercel.json` only as a minimal fallback so Vercel can build and
-return a helpful page instead of failing Python auto-detection.
+`public/index.html` and `vercel.json` only as a minimal static fallback so Vercel
+can build without installing the full Python RAG dependency stack.
 
 ### Docker
 
