@@ -25,16 +25,33 @@ from utils.rag_chain import RAGChain
 from utils.text_splitter import DocumentChunker
 from utils.vector_store import VectorStoreManager
 
-ensure_directories()
-configure_logging()
 logger = logging.getLogger(__name__)
 
 
-st.set_page_config(
-    page_title=CONFIG.app_title,
-    layout="wide",
-    initial_sidebar_state="expanded",
-)
+def app(environ, start_response):
+    """Minimal WSGI fallback for hosts that auto-detect Python web apps."""
+
+    status = "200 OK"
+    headers = [("Content-Type", "text/html; charset=utf-8")]
+    body = (
+        "<!doctype html>"
+        "<html><head><title>AI PDF RAG Chatbot</title></head>"
+        "<body>"
+        "<h1>AI PDF RAG Chatbot</h1>"
+        "<p>This project is a Streamlit app. Start it with:</p>"
+        "<pre>streamlit run app.py --server.address=0.0.0.0 --server.port=$PORT --server.headless=true</pre>"
+        "</body></html>"
+    ).encode("utf-8")
+
+    if environ.get("PATH_INFO") == "/healthz":
+        body = b"ok"
+
+    start_response(status, headers)
+    return [body]
+
+
+application = app
+handler = app
 
 
 def load_css() -> None:
@@ -410,6 +427,14 @@ def sidebar_controls():
 def main() -> None:
     """Run the Streamlit app."""
 
+    ensure_directories()
+    configure_logging()
+
+    st.set_page_config(
+        page_title=CONFIG.app_title,
+        layout="wide",
+        initial_sidebar_state="expanded",
+    )
     load_css()
     initialise_state()
 

@@ -153,6 +153,16 @@ Logs are written to `logs/app.log`.
 
 ## Deployment Notes
 
+For Python web hosts, set the start command to:
+
+```bash
+streamlit run app.py --server.address=0.0.0.0 --server.port=${PORT:-8501} --server.headless=true
+```
+
+The included `Procfile` and `Dockerfile` use the same command. `app.py` also exports
+`app`, `application`, and `handler` as a minimal WSGI fallback for platforms that
+auto-detect Python apps before reading the Streamlit start command.
+
 ### Streamlit Community Cloud
 
 Streamlit Community Cloud does not run a local Ollama service by default. To deploy there, replace `ChatOllama` with a hosted model endpoint or connect to a reachable Ollama server.
@@ -164,6 +174,13 @@ Use a Python web service for Streamlit and provide access to an Ollama service. 
 ### Railway
 
 Run Streamlit as the web process and configure an Ollama service separately. Add persistent storage for `database/vector_store`.
+
+### Vercel
+
+Vercel serverless functions are not a good fit for the full Streamlit app because
+Streamlit expects a long-running process and WebSocket support. This repo includes
+`api/index.py` and `vercel.json` only as a minimal fallback so Vercel can build and
+return a helpful page instead of failing Python auto-detection.
 
 ### Docker
 
